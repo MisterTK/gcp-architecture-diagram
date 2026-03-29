@@ -1,0 +1,76 @@
+{
+  "skill_name": "gcp-architecture-diagram",
+  "evals": [
+    {
+      "id": 1,
+      "name": "simple-webapp",
+      "prompt": "Create a GCP architecture diagram for a simple web app: Cloud Load Balancer -> Cloud Run (API) -> Cloud SQL and Cloud Storage. Include a VPC wrapper around the compute and data layers.",
+      "expected_output": "SVG with networking layer (LB), VPC container with compute (Cloud Run) and data (Cloud SQL + Cloud Storage) layers inside. Arrows between layers.",
+      "assertions": [
+        {"name": "produces_svg", "description": "Generates a valid SVG file with <?xml and <svg tags"},
+        {"name": "uses_render_script", "description": "Uses render.py with --spec and --icons flags"},
+        {"name": "valid_spec", "description": "JSON spec passes --validate-only without errors"},
+        {"name": "has_container", "description": "Spec contains a container element for VPC"},
+        {"name": "correct_icons", "description": "Uses cloud-run, cloud-sql, cloud-storage, networking icon IDs"},
+        {"name": "has_arrows", "description": "Spec contains arrow elements between layers"},
+        {"name": "grid_aligned", "description": "Icons are evenly spaced (inherent from render.py)"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "ml-pipeline",
+      "prompt": "I need a GCP ML pipeline architecture diagram. The pipeline has: Data ingestion from Cloud Storage and BigQuery, processing in Dataflow, model training on Vertex AI, model serving via Cloud Run, and monitoring with Cloud Logging. Group these into Data, Processing, ML, and Serving layers.",
+      "expected_output": "SVG with 4 distinct colored layers. Data layer has Cloud Storage and BigQuery. Processing has Dataflow (data-analytics icon). ML has Vertex AI. Serving has Cloud Run. Monitoring shown in a separate layer or alongside.",
+      "assertions": [
+        {"name": "produces_svg", "description": "Generates a valid SVG file"},
+        {"name": "valid_spec", "description": "JSON spec passes validation"},
+        {"name": "four_layers", "description": "Spec has at least 4 layer elements"},
+        {"name": "correct_product_icons", "description": "Uses cloud-storage, bigquery, vertex-ai, cloud-run"},
+        {"name": "correct_category_icons", "description": "Uses data-analytics for Dataflow, observability for Logging"},
+        {"name": "color_coded", "description": "Each layer uses a different color"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "multi-tenant",
+      "prompt": "Generate a multi-tenant SaaS architecture on GCP. Customer Tenant has: web frontend (Cloud CDN + Load Balancer), API layer (GKE). Shared Services Tenant has: databases (Cloud SQL, Cloud Spanner), AI (Vertex AI), storage (Cloud Storage), security (IAM, Cloud KMS, Security Command Center). Show both tenants with clear boundaries and a bridge between them.",
+      "expected_output": "SVG with two container elements (different colors) separated by a bridge element. Customer container has frontend and API layers. Shared Services container has data, AI, and security layers.",
+      "assertions": [
+        {"name": "produces_svg", "description": "Generates a valid SVG file"},
+        {"name": "valid_spec", "description": "JSON spec passes validation"},
+        {"name": "two_containers", "description": "Spec has at least 2 container elements"},
+        {"name": "has_bridge", "description": "Spec has a bridge element between containers"},
+        {"name": "correct_icons", "description": "Uses gke, cloud-sql, cloud-spanner, vertex-ai, security-command-center"},
+        {"name": "tenant_separation", "description": "Containers use different colors for visual distinction"}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "split-row",
+      "prompt": "Create a GCP architecture diagram with a compute layer (Cloud Run, GKE, Compute Engine) at the top, then below it a split row: on the left (75% width) a data layer with BigQuery, Cloud SQL, Cloud Spanner, and on the right (25% width) a cache layer with Memorystore.",
+      "expected_output": "SVG with a compute layer at top, then an arrow, then a split element with ratios [3, 1] containing a data layer (left) and cache layer (right).",
+      "assertions": [
+        {"name": "produces_svg", "description": "Generates a valid SVG file"},
+        {"name": "valid_spec", "description": "JSON spec passes validation"},
+        {"name": "has_split", "description": "Spec contains a split element"},
+        {"name": "correct_ratios", "description": "Split ratios approximate 75/25 (e.g., [3,1])"},
+        {"name": "correct_icons", "description": "Uses cloud-run, gke, compute-engine, bigquery, cloud-sql, cloud-spanner, databases"}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "complex-hero",
+      "prompt": "Create a comprehensive GCP architecture diagram for an AI Agent platform. Include: a legend, an Input Sources layer (Documents, Images, Audio from Cloud Storage), Agent Engine container (with layers for Runtime using agents/vertex-ai icons, and Foundation Models using ai-machine-learning), a Skills split (main skills on left 75% with developer-tools icons, data services on right 25% with BigQuery), a Serving layer (Cloud Run, Apigee), and an Infrastructure layer (IAM, Cloud Logging, Cloud Monitoring). Use appropriate colors for each section.",
+      "expected_output": "SVG using all major element types: legend, layers, container, split, arrows. Multiple colors. 10+ services total.",
+      "assertions": [
+        {"name": "produces_svg", "description": "Generates a valid SVG file"},
+        {"name": "valid_spec", "description": "JSON spec passes validation"},
+        {"name": "has_legend", "description": "Spec contains a legend element"},
+        {"name": "has_container", "description": "Spec contains at least one container"},
+        {"name": "has_split", "description": "Spec contains a split element"},
+        {"name": "service_count", "description": "At least 10 services across all layers"},
+        {"name": "multiple_colors", "description": "Uses at least 3 different colors"}
+      ]
+    }
+  ]
+}

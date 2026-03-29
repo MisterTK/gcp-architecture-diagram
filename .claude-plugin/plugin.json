@@ -1,0 +1,22 @@
+{
+  "name": "gcp-architecture-diagram",
+  "version": "2.0.0",
+  "description": "Generate professional GCP architecture diagrams with official Google Cloud icons. Write a declarative JSON spec, get pixel-perfect SVG output with 45 bundled icons. Supports layers, containers, split rows, multi-tenant bridges, and legends.",
+  "author": {
+    "name": "MisterTK"
+  },
+  "homepage": "https://github.com/MisterTK/gcp-architecture-diagram",
+  "repository": "https://github.com/MisterTK/gcp-architecture-diagram",
+  "license": "MIT",
+  "keywords": [
+    "gcp",
+    "google-cloud",
+    "architecture",
+    "diagrams",
+    "svg",
+    "infrastructure",
+    "cloud",
+    "icons",
+    "declarative"
+  ]
+}
