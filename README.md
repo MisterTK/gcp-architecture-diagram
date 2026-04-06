@@ -18,6 +18,14 @@ The agent writes a **declarative JSON spec** describing the diagram. A bundled P
 
 ## Installation
 
+### Claude Desktop (ZIP upload)
+
+1. Download the latest `gcp-architecture-diagram.zip` from the [Releases page](https://github.com/MisterTK/gcp-architecture-diagram/releases)
+2. In Claude Desktop, go to **Customize → Skills → Add Skill**
+3. Upload the ZIP file
+
+> The ZIP is automatically built and attached to every release via GitHub Actions.
+
 ### Skills CLI (Claude Code, Cursor, Codex, ADK, and more)
 
 ```bash

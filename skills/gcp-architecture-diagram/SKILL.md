@@ -1,11 +1,6 @@
 ---
 name: gcp-architecture-diagram
-description: >
-  GCP architecture diagram generator. Use for any request to draw, create, visualize, or diagram
-  a Google Cloud Platform (GCP) architecture, infrastructure, cloud system, or data pipeline using
-  official GCP product icons. This skill contains the required icon assets (Cloud Run, GKE, BigQuery,
-  Vertex AI, Cloud SQL, Pub/Sub, and 40+ more) and SVG renderer. Skip for non-GCP clouds, code or
-  Terraform generation, flowcharts, sequence diagrams, and ER diagrams.
+description: "GCP architecture diagram generator. Creates pixel-perfect SVG with 45 official GCP icons. Use for any request to draw, visualize, or diagram a Google Cloud Platform architecture."
 ---
 
 # GCP Architecture Diagram Generator
