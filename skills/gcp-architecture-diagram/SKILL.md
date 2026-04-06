@@ -20,13 +20,8 @@ produces pixel-perfect SVG with 45 official Google Cloud icons embedded as inlin
 1. **Understand** the user's architecture — identify GCP services, groupings, data flows
 2. **Map** each service to an icon from the catalog below
 3. **Write** a JSON spec file (see Spec Format)
-4. **Render**: `python <skill_dir>/scripts/render.py --spec spec.json --icons <skill_dir>/assets/gcp-icons.json -o diagram.svg`
+4. **Render**: `python ${CLAUDE_SKILL_DIR}/scripts/render.py --spec spec.json --icons ${CLAUDE_SKILL_DIR}/assets/gcp-icons.json -o diagram.svg`
 5. **Show** the result; iterate on feedback
-
-To find paths, resolve relative to this SKILL.md file's directory. If this file is at
-`/home/user/.claude/skills/gcp-architecture-diagram/SKILL.md`, then:
-- Icons: `/home/user/.claude/skills/gcp-architecture-diagram/assets/gcp-icons.json`
-- Renderer: `/home/user/.claude/skills/gcp-architecture-diagram/scripts/render.py`
 
 For PNG conversion: `rsvg-convert -w 2400 diagram.svg -o diagram.png` (macOS: `brew install librsvg`).
 Or output HTML directly: use `-o diagram.html` and it auto-wraps the SVG in an HTML viewer.

@@ -18,32 +18,29 @@ The agent writes a **declarative JSON spec** describing the diagram. A bundled P
 
 ## Installation
 
-### Via Skills CLI (recommended)
+### Via Plugin (recommended)
 
 ```bash
-npx skills add MisterTK/gcp-architecture-diagram
-```
-
-Install globally (available in all projects):
-
-```bash
-npx skills add MisterTK/gcp-architecture-diagram -g
-```
-
-### Anthropic Plugin
-
-```bash
+# Install into current project
 claude plugin add MisterTK/gcp-architecture-diagram
+
+# Install globally (available in all projects)
+claude plugin add -g MisterTK/gcp-architecture-diagram
+```
+
+Or from within Claude Code:
+```
+/plugin install gcp-architecture-diagram@claude-plugins-official
 ```
 
 ### Manual
 
 ```bash
 # Claude Code (project-level)
-git clone https://github.com/MisterTK/gcp-architecture-diagram.git .claude/skills/gcp-architecture-diagram
+git clone https://github.com/MisterTK/gcp-architecture-diagram.git .claude/plugins/gcp-architecture-diagram
 
 # Claude Code (global)
-git clone https://github.com/MisterTK/gcp-architecture-diagram.git ~/.claude/skills/gcp-architecture-diagram
+git clone https://github.com/MisterTK/gcp-architecture-diagram.git ~/.claude/plugins/gcp-architecture-diagram
 ```
 
 ## Usage
@@ -134,27 +131,29 @@ For services without a dedicated icon (Cloud Functions, Pub/Sub, Dataflow, etc.)
 If Google releases new icons:
 
 ```bash
-python scripts/update_icons.py
+python skills/gcp-architecture-diagram/scripts/update_icons.py
 ```
 
-This downloads the latest official icon ZIP and regenerates `assets/gcp-icons.json`.
+This downloads the latest official icon ZIP and regenerates `skills/gcp-architecture-diagram/assets/gcp-icons.json`.
 
-## Skill Structure
+## Structure
 
 ```
-gcp-architecture-skill/
-├── SKILL.md                     # Agent instructions with spec format and icon catalog
+gcp-architecture-diagram/
 ├── README.md                    # This file
 ├── LICENSE                      # MIT
 ├── .claude-plugin/
-│   └── plugin.json              # Plugin manifest for distribution
-├── assets/
-│   └── gcp-icons.json           # 45 official GCP icons (Iconify JSON, 82KB)
-├── scripts/
-│   ├── render.py                # JSON spec → SVG/HTML renderer (stdlib only)
-│   └── update_icons.py          # Download + convert fresh icons
-├── references/
-│   └── advanced-layouts.md      # Complex layout patterns
+│   └── plugin.json              # Plugin manifest
+├── skills/
+│   └── gcp-architecture-diagram/
+│       ├── SKILL.md             # Agent instructions with spec format and icon catalog
+│       ├── assets/
+│       │   └── gcp-icons.json   # 45 official GCP icons (Iconify JSON, 82KB)
+│       ├── scripts/
+│       │   ├── render.py        # JSON spec → SVG/HTML renderer (stdlib only)
+│       │   └── update_icons.py  # Download + convert fresh icons
+│       └── references/
+│           └── advanced-layouts.md  # Complex layout patterns
 ├── examples/                    # Example diagram outputs
 └── evals/
     └── evals.json               # 5 test cases with assertions
