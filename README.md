@@ -18,28 +18,47 @@ The agent writes a **declarative JSON spec** describing the diagram. A bundled P
 
 ## Installation
 
-### Via Plugin (recommended)
+### Skills CLI (Claude Code, Cursor, Codex, ADK, and more)
+
+```bash
+# Install into current project
+npx skills add MisterTK/gcp-architecture-diagram
+
+# Install globally
+npx skills add -g MisterTK/gcp-architecture-diagram
+```
+
+### Claude Code Plugin
 
 ```bash
 # Install into current project
 claude plugin add MisterTK/gcp-architecture-diagram
 
-# Install globally (available in all projects)
+# Install globally
 claude plugin add -g MisterTK/gcp-architecture-diagram
 ```
 
-Or from within Claude Code:
+### Google ADK
+
+```python
+from google.adk.tools.skill_toolset import SkillToolset
+
+# After cloning the repo or running npx skills add
+toolset = SkillToolset(skill_dir="path/to/skills/gcp-architecture-diagram")
 ```
-/plugin install gcp-architecture-diagram@claude-plugins-official
+
+Or via skills CLI (installs to `./agent/skills/gcp-architecture-diagram`):
+```bash
+npx skills add MisterTK/gcp-architecture-diagram
 ```
 
 ### Manual
 
 ```bash
-# Claude Code (project-level)
+# Claude Code plugin (project-level)
 git clone https://github.com/MisterTK/gcp-architecture-diagram.git .claude/plugins/gcp-architecture-diagram
 
-# Claude Code (global)
+# Claude Code plugin (global)
 git clone https://github.com/MisterTK/gcp-architecture-diagram.git ~/.claude/plugins/gcp-architecture-diagram
 ```
 
