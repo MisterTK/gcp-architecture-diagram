@@ -9,6 +9,9 @@ on:
 permissions:
   contents: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,14 +23,23 @@ jobs:
           cd skills
           zip -r ../gcp-architecture-diagram.zip gcp-architecture-diagram/
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: gcp-architecture-diagram
-          path: gcp-architecture-diagram.zip
-          retention-days: 90
+      # On push to main: keep a rolling "latest" pre-release always up to date.
+      # Users download this ZIP directly from the Releases page — no artifact
+      # wrapper, so Claude Desktop can import it without "nested zip" errors.
+      - name: Update rolling latest release
+        if: github.event_name == 'push'
+        run: |
+          gh release delete latest --yes 2>/dev/null || true
+          gh release create latest \
+            --prerelease \
+            --title "Latest (auto-built)" \
+            --notes "Auto-built from the latest commit on \`main\`. Download \`gcp-architecture-diagram.zip\` and upload to Claude Desktop via **Customize → Skills → Add Skill**." \
+            gcp-architecture-diagram.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Attach to GitHub Release
+      # On a tagged release: attach ZIP to that release too.
+      - name: Attach to tagged release
         if: github.event_name == 'release'
         run: gh release upload ${{ github.ref_name }} gcp-architecture-diagram.zip
         env:
