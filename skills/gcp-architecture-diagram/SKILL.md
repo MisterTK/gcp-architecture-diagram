@@ -1,6 +1,6 @@
 ---
 name: gcp-architecture-diagram
-description: "GCP architecture diagram generator. Creates pixel-perfect SVG with 45 official GCP icons. Use for any request to draw, visualize, or diagram a Google Cloud Platform architecture."
+description: GCP architecture diagram generator. Creates pixel-perfect SVG with 45 official GCP icons. Use for any request to draw, visualize, or diagram a Google Cloud Platform architecture.
 ---
 
 # GCP Architecture Diagram Generator
